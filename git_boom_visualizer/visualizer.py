@@ -75,7 +75,6 @@ class Visualizer:
         texture = pygame.image.load('git_boom_visualizer/circle.png')
         self.particle_manager = ParticleManager(200, texture)
 
-
         # Fps
         self.clock = pygame.time.Clock()
         self.fps = 60 
@@ -92,23 +91,24 @@ class Visualizer:
 
     def post(self):
         with self.lock:
-            self.boost_left = 100
+            self.boost_left = 1000
     
     def run(self):
         while True:
-            ev = pygame.event.poll()    # Look for any event
-            if ev.type == pygame.QUIT:  # Window close button clicked?
-                break                   #   ... leave game loop
+            ev = pygame.event.poll()
+            if ev.type == pygame.QUIT:
+                break
 
             if self.lock.acquire(False):
                 if self.boost_left > 0:
                     self.boost_left -= 1
+                    print self.boost_left
 
                 self.lock.release()
            
             pygame.display.update()
             ms_elapsed = self.clock.tick(self.fps)
-            self.particle_manager.update(ms_elapsed, self.boost_left * 5)
+            self.particle_manager.update(ms_elapsed, self.boost_left)
 
             self.screen.fill((0, 0, 0))
             self.particle_manager.draw(self.screen)
