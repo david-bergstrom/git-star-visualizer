@@ -17,7 +17,7 @@ class Visualizer:
                                                self.screen_height))
 
         texture = pygame.image.load('git_boom_visualizer/circle.png')
-        self.particle_manager = ParticleManager(200, texture)
+        self.particle_manager = ParticleManager(200, texture, self.screen_width, self.screen_height)
 
         # Fps
         self.clock = pygame.time.Clock()

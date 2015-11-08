@@ -34,9 +34,11 @@ class Particle:
 
 
 class ParticleManager:
-    def __init__(self, particle_count, texture):
+    def __init__(self, particle_count, texture, screen_width, screen_height):
         self.particle_count = particle_count
         self.texture = texture
+        self.screen_width = screen_width
+        self.screen_height = screen_height
 
         self.rand = Random()
         self.particles = []
@@ -55,7 +57,11 @@ class ParticleManager:
             particle.draw(screen, self.texture)
 
     def random_particle(self):
-        randint = self.rand.randint
-        return Particle(randint(100, 500), randint(470, 480),
-                        self.rand.uniform(-0.3, 0.3) - pi / 2,
-                        randint(1, 5), randint(5, 60), 100)
+        x = self.rand.randint(100, self.screen_width - 100)
+        y = self.rand.randint(self.screen_height - 20, self.screen_height)
+        angle = self.rand.uniform(-0.3, 0.3) - pi / 2
+        angular_velocity = self.rand.randint(1, 5)
+        ttl = self.rand.randint(5, 60)
+        size = 100
+
+        return Particle(x, y, angle, angular_velocity, ttl, size)
