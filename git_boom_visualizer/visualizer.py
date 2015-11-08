@@ -19,10 +19,12 @@ class Visualizer:
 
         # Fps
         self.clock = pygame.time.Clock()
-        self.fps = 60
+        self.fps = 30
 
         self.lock = Lock()
         self.boost_left = 0
+
+        self.font = pygame.font.SysFont("Source Sans Pro", 24)
 
     def post(self):
         with self.lock:
@@ -41,9 +43,11 @@ class Visualizer:
 
                 self.lock.release()
 
-            pygame.display.flip()
             ms_elapsed = self.clock.tick(self.fps)
             self.particle_manager.update(ms_elapsed, self.boost_left)
 
+            label = self.font.render(str(self.clock.get_fps()), 1, (255, 255, 255))
             self.screen.fill((0, 0, 0))
+            self.screen.blit(label, (10, 10))
             self.particle_manager.draw(self.screen)
+            pygame.display.flip()
