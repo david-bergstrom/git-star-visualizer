@@ -1,3 +1,5 @@
+import pygame
+
 from random import Random
 from math import cos, sin, pi
 
@@ -39,18 +41,14 @@ class Particle:
     def get_pos(self):
         return int(self.x), int(self.y)
 
-    def draw(self, screen, texture):
-        pos = self.get_pos()
-        area = shift_center(pos, texture)
+    def draw(self, screen):
         intensity = 255 * (1 - min(1, self.time_lived / 1000.0))
-        texture.fill(get_fire_color(intensity))
-        screen.blit(texture, area)
+        pygame.draw.circle(screen, get_fire_color(intensity), self.get_pos(), 8)
 
 
 class ParticleManager:
-    def __init__(self, particle_count, texture, screen_width, screen_height):
+    def __init__(self, particle_count, screen_width, screen_height):
         self.particle_count = particle_count
-        self.texture = texture
         self.screen_width = screen_width
         self.screen_height = screen_height
 

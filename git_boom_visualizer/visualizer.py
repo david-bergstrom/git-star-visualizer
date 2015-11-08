@@ -15,9 +15,7 @@ class Visualizer:
         # Screen size
         self.screen = pygame.display.set_mode((self.screen_width, self.screen_height), pygame.DOUBLEBUF)
 
-        texture = pygame.image.load('git_boom_visualizer/data/circle_1.bmp').convert()
-        texture.set_colorkey((0, 0, 0))
-        self.particle_manager = ParticleManager(300, texture, self.screen_width, self.screen_height)
+        self.particle_manager = ParticleManager(750, self.screen_width, self.screen_height)
 
         # Fps
         self.clock = pygame.time.Clock()
