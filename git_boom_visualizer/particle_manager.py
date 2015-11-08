@@ -32,7 +32,10 @@ class Particle:
 
     def draw(self, screen, texture):
         pos = self.get_pos()
-        screen.blit(texture, shift_center(pos, texture))
+        area = shift_center(pos, texture)
+        alpha = 255 * (1 - min(1, self.time_lived / 1000.0))
+        texture.set_alpha(alpha)
+        screen.blit(texture, area)
 
 
 class ParticleManager:
@@ -59,7 +62,7 @@ class ParticleManager:
             particle.draw(screen, self.texture)
 
     def random_particle(self):
-        x = self.rand.randint(100, self.screen_width - 100)
+        x = self.rand.randint(200, self.screen_width - 200)
         y = self.rand.randint(self.screen_height - 20, self.screen_height)
         angle = self.rand.uniform(-0.3, 0.3) - pi / 2
         angular_velocity = self.rand.randint(1, 5)

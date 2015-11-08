@@ -16,7 +16,8 @@ class Visualizer:
         self.screen = pygame.display.set_mode((self.screen_width,
                                                self.screen_height))
 
-        texture = pygame.image.load('git_boom_visualizer/circle.png')
+        texture = pygame.image.load('git_boom_visualizer/data/circle_1.bmp').convert()
+        texture.set_colorkey((0, 0, 0))
         self.particle_manager = ParticleManager(200, texture, self.screen_width, self.screen_height)
 
         # Fps
@@ -43,7 +44,7 @@ class Visualizer:
 
                 self.lock.release()
 
-            pygame.display.update()
+            pygame.display.flip()
             ms_elapsed = self.clock.tick(self.fps)
             self.particle_manager.update(ms_elapsed, self.boost_left)
 
