@@ -18,13 +18,12 @@ def get_fire_color(intensity):
 
 
 class Particle:
-    def __init__(self, x, y, angle, angular_velocity, ttl, size):
+    def __init__(self, x, y, angle, angular_velocity, ttl):
         self.x = x
         self.y = y
         self.angle = angle
         self.angular_velocity = angular_velocity
         self.ttl = ttl
-        self.size = size
 
         self.time_lived = 0
 
@@ -77,6 +76,5 @@ class ParticleManager:
         angle = self.rand.uniform(-0.3, 0.3) - pi / 2
         angular_velocity = self.rand.randint(1, 5)
         ttl = self.rand.randint(80, 1000)
-        size = 100
 
-        return Particle(x, y, angle, angular_velocity, ttl, size)
+        return Particle(x, y, angle, angular_velocity, ttl)
