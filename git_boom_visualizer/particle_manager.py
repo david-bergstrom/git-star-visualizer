@@ -16,10 +16,12 @@ class Particle:
         self.ttl = ttl
         self.size = size
 
+        self.time_lived = 0
+
     # Updates the particle and returns whether it needs replacing
-    # TODO: Use time
     def update(self, time):
-        self.ttl -= 1
+        self.ttl -= time
+        self.time_lived += time
         self.x += self.angular_velocity * cos(self.angle)
         self.y += self.angular_velocity * sin(self.angle)
 
@@ -61,7 +63,7 @@ class ParticleManager:
         y = self.rand.randint(self.screen_height - 20, self.screen_height)
         angle = self.rand.uniform(-0.3, 0.3) - pi / 2
         angular_velocity = self.rand.randint(1, 5)
-        ttl = self.rand.randint(5, 60)
+        ttl = self.rand.randint(80, 1000)
         size = 100
 
         return Particle(x, y, angle, angular_velocity, ttl, size)
