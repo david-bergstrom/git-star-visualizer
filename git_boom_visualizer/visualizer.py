@@ -49,8 +49,3 @@ class Visualizer:
 
             self.screen.fill((0, 0, 0))
             self.particle_manager.draw(self.screen)
-
-
-if __name__ == '__main__':
-    visualizer = Visualizer()
-    visualizer.run()
