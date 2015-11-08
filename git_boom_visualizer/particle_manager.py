@@ -69,9 +69,9 @@ class ParticleManager:
             particle.draw(screen)
 
     def random_particle(self):
-        x = self.rand.randint(400, self.screen_width - 400)
-        y = self.rand.randint(self.screen_height, self.screen_height)
-        angle = self.rand.uniform(-0.3, 0.3) - pi / 2
+        x = self.screen_width // 2
+        y = self.screen_height // 2
+        angle = self.rand.uniform(0, 2 * pi)
         angular_velocity = self.rand.uniform(1/16.0, 5/16.0)
         ttl = self.rand.randint(80, 1000)
 
