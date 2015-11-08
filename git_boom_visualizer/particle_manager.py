@@ -7,6 +7,16 @@ def shift_center(pos, image):
     return map(sum, zip(pos, shift))
 
 
+# From: http://everything2.com/title/Fire+Color+Pallet
+def get_fire_color(intensity):
+    r = min(intensity, 85) * 3
+    intensity = max(intensity-85, 0)
+    g = min(intensity, 85) * 3
+    intensity = max(intensity-85, 0)
+    b = min(intensity, 85) * 3
+    return r, g, b
+
+
 class Particle:
     def __init__(self, x, y, angle, angular_velocity, ttl, size):
         self.x = x
@@ -33,8 +43,8 @@ class Particle:
     def draw(self, screen, texture):
         pos = self.get_pos()
         area = shift_center(pos, texture)
-        alpha = 255 * (1 - min(1, self.time_lived / 1000.0))
-        texture.set_alpha(alpha)
+        intensity = 255 * (1 - min(1, self.time_lived / 1000.0))
+        texture.fill(get_fire_color(intensity))
         screen.blit(texture, area)
 
 
