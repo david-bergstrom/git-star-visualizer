@@ -6,19 +6,18 @@ from particle_manager import ParticleManager
 class Visualizer:
     def __init__(self):
         # Dimensions
-        self.screen_width = 640
-        self.screen_height = 480
+        self.screen_width = 1366
+        self.screen_height = 768
 
         pygame.init()
         pygame.display.set_caption('Git Boom Visualizer')
 
         # Screen size
-        self.screen = pygame.display.set_mode((self.screen_width,
-                                               self.screen_height))
+        self.screen = pygame.display.set_mode((self.screen_width, self.screen_height), pygame.DOUBLEBUF)
 
         texture = pygame.image.load('git_boom_visualizer/data/circle_1.bmp').convert()
         texture.set_colorkey((0, 0, 0))
-        self.particle_manager = ParticleManager(200, texture, self.screen_width, self.screen_height)
+        self.particle_manager = ParticleManager(300, texture, self.screen_width, self.screen_height)
 
         # Fps
         self.clock = pygame.time.Clock()
