@@ -33,8 +33,8 @@ class Particle:
     def update(self, time):
         self.ttl -= time
         self.time_lived += time
-        self.x += self.angular_velocity * cos(self.angle)
-        self.y += self.angular_velocity * sin(self.angle)
+        self.x += self.angular_velocity * time * cos(self.angle)
+        self.y += self.angular_velocity * time * sin(self.angle)
 
         return self.ttl > 0
 
@@ -66,13 +66,13 @@ class ParticleManager:
 
     def draw(self, screen):
         for particle in self.particles:
-            particle.draw(screen, self.texture)
+            particle.draw(screen)
 
     def random_particle(self):
         x = self.rand.randint(400, self.screen_width - 400)
-        y = self.rand.randint(self.screen_height - 20, self.screen_height)
+        y = self.rand.randint(self.screen_height, self.screen_height)
         angle = self.rand.uniform(-0.3, 0.3) - pi / 2
-        angular_velocity = self.rand.randint(1, 5)
+        angular_velocity = self.rand.uniform(1/16.0, 5/16.0)
         ttl = self.rand.randint(80, 1000)
 
         return Particle(x, y, angle, angular_velocity, ttl)
