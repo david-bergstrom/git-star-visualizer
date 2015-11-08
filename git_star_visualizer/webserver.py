@@ -1,5 +1,5 @@
 from flask import Flask
-from git_boom_visualizer import visualizer
+from git_star_visualizer import visualizer
 
 app = Flask(__name__)
 

@@ -1,6 +1,6 @@
-An applications which visualizes a fire which increases in strength
-when a HTTP message is sent to it (which could for example be sent
-from GitHub whenever someone pushes to a project).
+An applications which visualizes a star which pulses when a HTTP
+message is sent to it (which could for example be sent from GitHub
+whenever someone pushes to a project).
 
-The application uses Flask for the receiving HTTP messages and PyGame
+The application uses Flask for the receiving HTTP messages and pygame
 for visualizing the fire.

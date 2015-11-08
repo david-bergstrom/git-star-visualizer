@@ -1,4 +1,4 @@
-from git_boom_visualizer import app, visualizer
+from git_star_visualizer import app, visualizer
 from threading import Thread
 
 # Run the Flask application in a separate daemon thread
