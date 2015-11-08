@@ -55,24 +55,27 @@ class ParticleManager:
         self.rand = Random()
         self.particles = []
         for i in range(particle_count):
-            self.particles.append(self.random_particle())
+            self.particles.append(self.random_particle(0))
 
     def update(self, ms_elapsed, boost):
         self.particles = filter(lambda p: p.update(ms_elapsed),
                                 self.particles)
 
-        for _ in range(self.particle_count - len(self.particles) + boost):
-            self.particles.append(self.random_particle())
+        for _ in range(self.particle_count - len(self.particles) + boost // 3):
+            self.particles.append(self.random_particle(boost))
 
     def draw(self, screen):
         for particle in self.particles:
             particle.draw(screen)
 
-    def random_particle(self):
+    def random_particle(self, boost):
         x = self.screen_width // 2
         y = self.screen_height // 2
         angle = self.rand.uniform(0, 2 * pi)
         angular_velocity = self.rand.uniform(1/16.0, 5/16.0)
-        ttl = self.rand.randint(80, 1000)
+        if boost > 0:
+            ttl = self.rand.randint(1300, 1500)
+        else:
+            ttl = self.rand.randint(80, 1000)
 
         return Particle(x, y, angle, angular_velocity, ttl)

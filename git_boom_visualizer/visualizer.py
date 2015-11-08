@@ -19,7 +19,7 @@ class Visualizer:
 
         # Fps
         self.clock = pygame.time.Clock()
-        self.fps = 30
+        self.fps = 60
 
         self.lock = Lock()
         self.boost_left = 0
@@ -28,17 +28,21 @@ class Visualizer:
 
     def post(self):
         with self.lock:
-            self.boost_left = 1000
+            self.boost_left = 5000
 
     def run(self):
         while True:
-            ev = pygame.event.poll()
-            if ev.type == pygame.QUIT:
+            event = pygame.event.poll()
+            if event.type == pygame.QUIT:
                 break
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    with self.lock:
+                        self.boost_left = 5000
 
             if self.lock.acquire(False):
                 if self.boost_left > 0:
-                    self.boost_left -= 1
+                    self.boost_left -= 10
                     print self.boost_left
 
                 self.lock.release()
