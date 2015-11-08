@@ -47,7 +47,7 @@ class ParticleManager:
         self.particles = filter(lambda p: p.update(ms_elapsed),
                                 self.particles)
 
-        for i in range(self.particle_count - len(self.particles) + boost):
+        for _ in range(self.particle_count - len(self.particles) + boost):
             self.particles.append(self.random_particle())
 
     def draw(self, screen):
