@@ -4,3 +4,7 @@ whenever someone pushes to a project).
 
 The application uses Flask for the receiving HTTP messages and pygame
 for visualizing the fire.
+
+Screenshot:
+
+![Screenshot of application](/../screenshots/screenshots/1.png?raw=true)
